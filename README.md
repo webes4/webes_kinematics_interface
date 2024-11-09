@@ -1,6 +1,6 @@
 # webes_kinematics_interface
 
-# Kinematics implementation for LinuxCNC Telnet
+# Kinematics interface for LinuxCNC Telnet
 
 This Python script provides an interface for controlling a CNC machine via a Telnet connection to a LinuxCNC server (linuxcncrsh). The main class, `LinuxCNCKinematics`, implements basic kinematic functions to move the CNC machine either to absolute positions or by relative increments.
 
