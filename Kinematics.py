@@ -35,7 +35,7 @@ class LinuxCNCKinematics(Kinematics):
 
     def _initialize_linuxcnc_machine(self):
         try:
-            # Initialisierungsbefehle zur Vorbereitung der Maschine
+            # Initialization commands to prepare the machine
             self._send_command("hello EMC user-typing-at-telnet 1.0\n")
             self._send_check_echo("set enable EMCTOO\n")
             self._send_check_echo("set wait_mode done\n")
@@ -63,7 +63,7 @@ class LinuxCNCKinematics(Kinematics):
             print("No Telnet connection established")
 
     def _send_command(self, command):
-        """Sendet einen Befehl über die Telnet-Verbindung und gibt die Antwort zurück."""
+        """Sends a command via the Telnet connection and returns the response."""
         try:
             self.tn.write(command.encode('ascii'))
             response = self.tn.read_until(b"\n", timeout=2).decode('ascii').strip()
@@ -84,24 +84,23 @@ class LinuxCNCKinematics(Kinematics):
             return None
 
     def _wait_for_IDLE(self):
+        """Waits for the machine to reach an IDLE state after a command is sent."""
         self.tn.write(b"get program_status" + b"\n")
         response = self.tn.read_until(b"IDLE").decode('ascii').strip()
         print(response)
 
-
-
     def close_connection(self):
+        """Closes the Telnet connection."""
         if self.tn:
             self.tn.close()
             print("Telnet connection closed")
 
 
-# Beispielverwendung
+# Example usage
 """linuxcnc_kinematics = Kinematics.create("linuxcnc")
 for x in range(0,40):
     linuxcnc_kinematics.move_relativ(2.5)
     time.sleep(0.1)
     print('take pic')
-
 
 linuxcnc_kinematics.close_connection()"""
