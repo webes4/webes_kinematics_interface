@@ -95,12 +95,8 @@ class LinuxCNCKinematics(Kinematics):
             self.tn.close()
             print("Telnet connection closed")
 
-
-# Example usage
-"""linuxcnc_kinematics = Kinematics.create("linuxcnc")
-for x in range(0,40):
-    linuxcnc_kinematics.move_relativ(2.5)
-    time.sleep(0.1)
-    print('take pic')
-
-linuxcnc_kinematics.close_connection()"""
+if __name__ == "__main__":
+    linuxcnc_kinematics = Kinematics.create("linuxcnc")
+    linuxcnc_kinematics.move_relativ(100)
+    time.sleep(1)
+    linuxcnc_kinematics.close_connection()

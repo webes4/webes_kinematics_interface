@@ -26,10 +26,9 @@ linuxcnc_kinematics = Kinematics.create("linuxcnc")
 ```
 ### Example of performing relative movements in a loop:
 ```python
-for x in range(0, 10):
-    linuxcnc_kinematics.move_relativ(10)
-    time.sleep(0.1)
-    print('take pic')
+linuxcnc_kinematics = Kinematics.create("linuxcnc")
+linuxcnc_kinematics.move_relativ(100)
+linuxcnc_kinematics.close_connection()
 ```
 
 ### Closing the Connection:
